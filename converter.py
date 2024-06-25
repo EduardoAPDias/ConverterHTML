@@ -4,12 +4,12 @@ import os
 # Caminho para o arquivo de favoritos recuperado
 bookmarks_path = '/home/eduardo/Documentos/projetos/ConverterHTML/Bookmarks'
 
-# Verifique se o arquivo de favoritos existe
+# Verificar se o arquivo de favoritos existe
 if not os.path.exists(bookmarks_path):
     print(f'Erro: O arquivo {bookmarks_path} não existe.')
 else:
     try:
-        # Leia o arquivo de favoritos
+        # Ler o arquivo de favoritos
         with open(bookmarks_path, 'r', encoding='utf-8') as file:
             bookmarks_data = json.load(file)
             print('Arquivo de favoritos carregado com sucesso.')
@@ -31,14 +31,14 @@ else:
                     html += f'{indent}<DT><A HREF="{bookmarks["url"]}" ADD_DATE="{bookmarks.get("date_added", 0)}">{bookmarks["name"]}</A>\n'
             return html
 
-        # Raízes dos favoritos
+        # Roots dos favoritos
         roots = bookmarks_data['roots']
         bookmark_bar = roots.get('bookmark_bar', {})
 
         # Converter os favoritos para o formato NETSCAPE
         bookmarks_html_content = convert_to_netscape(bookmark_bar.get('children', []))
 
-        # Criação de um HTML completo no formato NETSCAPE
+        # Criação de um HTML completo no formato NETSCAPE isso foi tirado de um arquivo gerado pelo opera que pode ser importado
         html_content = f"""<!DOCTYPE NETSCAPE-Bookmark-file-1>
 <!-- This is an automatically generated file.
      It will be read and overwritten.
